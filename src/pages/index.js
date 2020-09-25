@@ -1,50 +1,74 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
+import { Card, CardHeader, Text, CardBody, Grid, Heading, Paragraph, Box } from 'grommet';
+import Link from '../components/link';
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
+const BlogIndex = ({ data }) => {
   const posts = data.allMarkdownRemark.edges
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <>
       <SEO title="All posts" />
       <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
-        return (
-          <article key={node.fields.slug}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
+      <Box
+        pad={{
+          horizontal: 'small'
+        }}
+      >
+        <Grid 
+          align='start'
+          columns={{count: 'fill', size: 'medium'}}
+          gap='small'
+        >
+          {posts.map(({ node }) => {
+            const title = node.frontmatter.title || node.fields.slug
+            return (
+              <Card
+                key={node.fields.slug}
+                background={{'light': '#F5F5F5', 'dark': '#212121'}}
+                elevation='none'
               >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </section>
-          </article>
-        )
-      })}
-    </Layout>
+                <CardHeader
+                  pad={{
+                    horizontal: 'medium',
+                    vertical: 'small'
+                  }}
+                >
+                  <Link to={node.fields.slug}>
+                    <Heading
+                      level='4'
+                      pad={{
+                        horizontal: 'medium'
+                      }}
+                      margin='none'
+                    >
+                      {title}
+                    </Heading>
+                  </Link>
+                  <Text>{node.frontmatter.date}</Text>
+                </CardHeader>
+                <CardBody
+                  pad={{
+                    horizontal: 'medium'
+                  }}
+                >
+                  <Paragraph>
+                    {node.frontmatter.description || node.excerpt}
+                  </Paragraph>
+                </CardBody>
+              </Card>
+            )
+          })}
+        </Grid>
+      </Box>
+    </>
   )
 }
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {

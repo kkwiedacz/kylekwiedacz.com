@@ -1,70 +1,137 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { useState } from "react"
+import Link from './link';
+import { Grommet, Heading, Header, Footer, Box, Text, Anchor } from 'grommet';
+import { Instagram, Twitter, Github, Linkedin, Moon } from 'grommet-icons';
+import { grommet } from "grommet/themes";
+import { deepMerge } from "grommet/utils";
+import { useStaticQuery, graphql } from 'gatsby';
 
-import { rhythm, scale } from "../utils/typography"
+const Layout = ({ location, children }) => {
+  const rootPath = `${__PATH_PREFIX__}/`;
+  let header;
 
-const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  let header
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `);
+
+  const [ themeMode, setThemeMode ] = useState('light');
+
+  const onClickThemeMode = () => {
+    console.log('IN SET THEME MODE', themeMode)
+    if(themeMode === 'light') {
+      setThemeMode('dark');
+    } else {
+      setThemeMode('light');
+    }
+  }
+
+  const theme = deepMerge(grommet, {
+    global: {
+      font: {
+        family: 'Source Code Pro',
+      },
+      colors: {
+        background: {
+          dark: '#121212',
+          light: '#FFFFFF',
+        },
+        text: {
+          dark: '#FFFFFF',
+          light: '#000000'
+        },
+        active: '#26A69A',
+      },
+    },
+    anchor: {
+      color: '#26A69A',
+      hover: {
+        color: '#00796B',
+      },
+    },
+  });
+
+  let socialIcons = (
+    <Box
+      direction="row"
+      gap="small"
+    >
+      <Anchor 
+        href='https://www.instagram.com/kylekwiedacz/'
+        icon={<Instagram />}
+      />
+      <Anchor 
+        href='https://twitter.com/kylekwiedacz'
+        icon={<Twitter />}
+      />
+      <Anchor 
+        href='https://github.com/kkwiedacz/'
+        icon={<Github />}
+      />
+      <Anchor 
+        href='https://www.linkedin.com/in/kyle-kwiedacz/'
+        icon={<Linkedin />}
+      />
+      <Anchor 
+        icon={<Moon />}
+        onClick={() => onClickThemeMode()}
+      />
+    </Box>
+  );
 
   if (location.pathname === rootPath) {
     header = (
-      <h1
-        style={{
-          ...scale(1.5),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-        }}
+      <Heading
+        level="1"
       >
         <Link
-          style={{
-            boxShadow: `none`,
-            color: `inherit`,
-          }}
           to={`/`}
         >
-          {title}
+          {data.site.siteMetadata.title}
         </Link>
-      </h1>
+      </Heading>
     )
   } else {
     header = (
-      <h3
-        style={{
-          fontFamily: `Montserrat, sans-serif`,
-          marginTop: 0,
-        }}
+      <Heading
+        level="3"
       >
         <Link
-          style={{
-            boxShadow: `none`,
-            color: `inherit`,
-          }}
           to={`/`}
         >
-          {title}
+          {data.site.siteMetadata.title}
         </Link>
-      </h3>
+      </Heading>
     )
   }
   return (
-    <div
+    <Grommet
+      theme={theme}
+      themeMode={themeMode}
+      full
       style={{
-        marginLeft: `auto`,
-        marginRight: `auto`,
-        maxWidth: rhythm(24),
-        padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      <header>{header}</header>
-      <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
-    </div>
-  )
-}
+      <Header
+        justify='between'
+        margin='small'
+      >
+        {header}
+        {socialIcons}
+      </Header>
+      <Box flex='grow'>{children}</Box>
+      <Footer justify='center' margin='small'>
+        <Text>© {new Date().getFullYear()}. {data.site.siteMetadata.title}, Built with {` `} <Anchor href="https://www.gatsbyjs.org">Gatsby</Anchor></Text>
+      </Footer>
+    </Grommet>
+  );
+};
 
-export default Layout
+export default Layout;

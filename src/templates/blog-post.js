@@ -1,54 +1,53 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
+import { Heading, Paragraph, Header, Box, Footer, Markdown } from 'grommet';
+import Link from '../components/link';
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
 
-const BlogPostTemplate = ({ data, pageContext, location }) => {
+const BlogPostTemplate = ({ data, pageContext }) => {
   const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
-      <article>
-        <header>
-          <h1
-            style={{
-              marginTop: rhythm(1),
-              marginBottom: 0,
-            }}
+      <Box
+        margin='medium'
+      >
+        <Header>
+          <Heading
+            level='1'
           >
             {post.frontmatter.title}
-          </h1>
-          <p
-            style={{
-              ...scale(-1 / 5),
-              display: `block`,
-              marginBottom: rhythm(1),
+          </Heading>
+          <Paragraph>
+            {post.frontmatter.date}
+          </Paragraph>
+        </Header>
+        {/* <Box dangerouslySetInnerHTML={{ __html: post.html }} /> */}
+        <Box align='center'>
+          <Markdown
+            components={{
+              p: {
+                component: Paragraph,
+                props: { fill: true }
+              }
             }}
           >
-            {post.frontmatter.date}
-          </p>
-        </header>
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <footer>
+            {post.html}
+          </Markdown>
+        </Box>
+        <Footer justify='center' margin='small'>
           <Bio />
-        </footer>
-      </article>
+        </Footer>
+      </Box>
 
-      <nav>
+      <Box>
         <ul
           style={{
             display: `flex`,
@@ -61,7 +60,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+              ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
@@ -73,8 +72,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             )}
           </li>
         </ul>
-      </nav>
-    </Layout>
+      </Box>
+    </>
   )
 }
 
