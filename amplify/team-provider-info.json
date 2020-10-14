@@ -1,14 +1,14 @@
 {
-  "master": {
+  "main": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-kylekwiedaczcom-master-165826-authRole",
-      "UnauthRoleArn": "arn:aws:iam::878761491106:role/amplify-kylekwiedaczcom-master-165826-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::878761491106:role/amplify-kylekwiedaczcom-master-165826-authRole",
+      "AuthRoleName": "amplify-kylekwiedaczcom-main-23605-authRole",
+      "UnauthRoleArn": "arn:aws:iam::878761491106:role/amplify-kylekwiedaczcom-main-23605-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::878761491106:role/amplify-kylekwiedaczcom-main-23605-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-kylekwiedaczcom-master-165826-deployment",
-      "UnauthRoleName": "amplify-kylekwiedaczcom-master-165826-unauthRole",
-      "StackName": "amplify-kylekwiedaczcom-master-165826",
-      "StackId": "arn:aws:cloudformation:us-west-2:878761491106:stack/amplify-kylekwiedaczcom-master-165826/01de3be0-ff8b-11ea-a379-062d4fc47da6",
+      "DeploymentBucketName": "amplify-kylekwiedaczcom-main-23605-deployment",
+      "UnauthRoleName": "amplify-kylekwiedaczcom-main-23605-unauthRole",
+      "StackName": "amplify-kylekwiedaczcom-main-23605",
+      "StackId": "arn:aws:cloudformation:us-west-2:878761491106:stack/amplify-kylekwiedaczcom-main-23605/02c87770-0dc6-11eb-9c92-0abd6ce809e7",
       "AmplifyAppId": "d13j0d9ac3cloj"
     }
   }

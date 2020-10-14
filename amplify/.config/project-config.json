@@ -1,4 +1,7 @@
 {
+  "providers": [
+    "awscloudformation"
+  ],
   "projectName": "kylekwiedaczcom",
   "version": "3.0",
   "frontend": "javascript",
@@ -8,10 +11,7 @@
       "SourceDir": "src",
       "DistributionDir": "public",
       "BuildCommand": "npm run-script build",
-      "StartCommand": "npm run-script develop"
+      "StartCommand": "npm run-script start"
     }
-  },
-  "providers": [
-    "awscloudformation"
-  ]
+  }
 }
