@@ -1,13 +1,18 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "kylekwiedacz.com",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "The home of kylekwiedacz.com",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Kyle Kwiedacz <me@kylekwiedacz.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/kkwiedacz/kylekwiedacz.com/issues"
+  },
+  "engines": {
+    "node": "14.15.x"
   },
   "dependencies": {
+    "@fontsource/cooper-hewitt": "^4.5.0",
+    "@react-icons/all-files": "^4.1.0",
     "gatsby": "^4.5.1",
     "gatsby-plugin-feed": "^4.5.0",
     "gatsby-plugin-gatsby-cloud": "^4.5.0",
@@ -33,9 +38,13 @@
     "typeface-montserrat": "0.0.75"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "autoprefixer": "^10.4.2",
+    "gatsby-plugin-postcss": "^5.5.0",
+    "postcss": "^8.4.5",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.13"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/kkwiedacz/kylekwiedacz.com#readme",
   "keywords": [
     "gatsby"
   ],
@@ -43,7 +52,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/kkwiedacz/kylekwiedacz.com.git"
   },
   "scripts": {
     "build": "gatsby build",

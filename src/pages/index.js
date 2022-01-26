@@ -7,6 +7,7 @@ import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
+  const tagLine = data.site.siteMetadata?.tagLine || `Tag Line`
   const posts = data.allMarkdownRemark.nodes
 
   if (posts.length === 0) {
@@ -24,22 +25,21 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} tagLine={tagLine}>
       <Seo title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
+      <div className="grid md:grid-cols-3 gap-4">
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
 
           return (
-            <li key={post.fields.slug}>
+            <div className="mt-6" key={post.fields.slug}>
               <article
                 className="post-list-item"
                 itemScope
                 itemType="http://schema.org/Article"
               >
                 <header>
-                  <h2>
+                  <h2 className="text-xl">
                     <Link to={post.fields.slug} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
@@ -55,10 +55,11 @@ const BlogIndex = ({ data, location }) => {
                   />
                 </section>
               </article>
-            </li>
+            </div>
           )
         })}
-      </ol>
+      </div>
+      <Bio />
     </Layout>
   )
 }
@@ -70,6 +71,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        tagLine
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {

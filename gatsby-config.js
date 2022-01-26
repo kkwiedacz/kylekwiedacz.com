@@ -1,17 +1,19 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Kyle Kwiedacz`,
+    tagLine: `Software // Photography // Cycling // Cars`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Kyle Kwiedacz`,
+      summary: `who lives and works in Phoneix, AZ, currently as a senior software engineer at Rocket Mortgage.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `Software // Photography // Cycling // Cars`,
+    siteUrl: `https://kylekwiedacz.com`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `kylekwiedacz`,
     },
   },
   plugins: [
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -113,15 +115,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Kyle Kwiedacz's Blog`,
+        short_name: `Kyle Kwiedacz`,
         start_url: `/`,
         background_color: `#ffffff`,
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo_transparent.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,
